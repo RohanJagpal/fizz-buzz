@@ -1,5 +1,3 @@
-from numpy import where
-
 class FizzBuzz:
 
     __rules = [
