@@ -1,3 +1,5 @@
+from typing import Union
+
 class FizzBuzz:
 
     __rules = [
@@ -11,15 +13,15 @@ class FizzBuzz:
         }
     ]
 
-    def __init__(self, start=1, end=100):
+    def __init__(self, start: int=1, end: int=100) -> None:
         self.startCount = start
         self.endCount = end
         return
 
-    def __isMult(self, num, mult):
+    def __isMult(self, num: int, mult: int) -> bool:
         return (num % mult == 0)
 
-    def play(self):
+    def play(self) -> None:
         for i in range(self.startCount, self.endCount):
             output = ''
             for rule in self.__rules:
@@ -31,17 +33,17 @@ class FizzBuzz:
                 print(output)
         print(self.__rules)
 
-    def getRule(self, key, value):
+    def getRule(self, key: Union[str, int], value: Union[str, int]) -> Union[dict, None]:
         for rule in self.__rules:
             try:
                 ruleToReturn = rule if value in rule[key] else None
             except TypeError as err:
-                print(err)
+                #print(err)
                 ruleToReturn = rule if rule[key] == value else None
-                print(f'ruleKey {rule[key]}')
-                print(f'ruleToReturn {ruleToReturn}')
+                #print(f'ruleKey {rule[key]}')
+                #print(f'ruleToReturn {ruleToReturn}')
             except:
-                print('final except')
+                #print('final except')
                 ruleToReturn = None
             finally:
                 if ruleToReturn:
@@ -49,7 +51,7 @@ class FizzBuzz:
 
         return ruleToReturn
             
-    def addRule(self, multiple, word):
+    def addRule(self, multiple: int, word: str) -> None:
         rule = self.getRule('multiple', multiple)
         if rule and word in rule['word']:
             return
@@ -60,8 +62,9 @@ class FizzBuzz:
             'multiple':multiple,
             'word':[word]
         })
+        return
 
-    def deleteRule(self, multiple, word):
+    def deleteRule(self, multiple: int, word: str) -> None:
         rule = self.getRule('multiple', multiple)
         if not rule:
             print('deleteRule rule is None')
