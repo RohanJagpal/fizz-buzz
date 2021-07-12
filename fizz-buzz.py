@@ -24,8 +24,7 @@ class FizzBuzz:
             output = ''
             for rule in self.__rules:
                 if self.__isMult(i, rule['multiple']):
-                    for word in rule['word']:
-                        output += word
+                    output.join(rule['word']) # Switched to using join here
             if output == '':
                 print(i)
             else:
